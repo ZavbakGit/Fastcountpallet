@@ -1,3 +1,15 @@
 <resources>
+
+    <string-array name="entries_type_tsd">
+        <item>АТОЛ Smart.Droid</item>
+        <item>АТОЛ Smart.Lite</item>
+    </string-array>
+    <string-array name="entry_values_tsd">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
     <string name="app_name">Fast count pallet</string>
+    <string name="help">Справка</string>
+    <string name="help_documents">1 - Загрузить данные\n\n2 - Выгрузить документ</string>
 </resources>
