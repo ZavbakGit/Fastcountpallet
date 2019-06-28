@@ -4,7 +4,9 @@
             android:id="@+id/nav_graph" app:startDestination="@id/listDocFragment">
 
     <fragment android:id="@+id/aboutFragment" android:name="fun.gladkikh.app.fastcountpallet.ui.fragment.AboutFragment"
-              android:label="AboutFragment"/>
+              android:label="AboutFragment">
+        <argument android:name="description" app:argType="string" android:defaultValue='"Hi Default"'/>
+    </fragment>
     <fragment android:id="@+id/helpFragment" android:name="fun.gladkikh.app.fastcountpallet.ui.fragment.HelpFragment"
               android:label="HelpFragment"/>
     <fragment android:id="@+id/settingsFragment"
@@ -13,4 +15,7 @@
     <fragment android:id="@+id/listDocFragment"
               android:name="fun.gladkikh.app.fastcountpallet.ui.fragment.ListDocFragment"
               android:label="ListDocFragment"/>
+    <dialog android:id="@+id/myDialog"
+            android:name="fun.gladkikh.app.fastcountpallet.ui.fragment.MyDialog"
+            android:label="MyDialog"/>
 </navigation>
