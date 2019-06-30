@@ -37,10 +37,6 @@ class MainActivity : BaseActivity(),HostActivity {
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-    }
-
 
     override fun getLayout() = R.layout.activity_main
 }

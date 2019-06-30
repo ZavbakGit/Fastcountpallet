@@ -1,25 +1,30 @@
 package `fun`.gladkikh.app.fastcountpallet.ui.fragment
 
 import `fun`.gladkikh.app.fastcountpallet.R
+import `fun`.gladkikh.app.fastcountpallet.modelview.DialogViewModel
 import `fun`.gladkikh.app.fastcountpallet.ui.base.BaseFragment
-import android.content.DialogInterface
-import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.uber.autodispose.AutoDispose
 import kotlinx.android.synthetic.main.about_fragment.*
+import java.util.*
 
 class AboutFragment : BaseFragment() {
 
-    companion object {
-        private const val DIALOG_REQUEST_CODE = 1
-    }
+
+    lateinit var viewModelDialog: DialogViewModel
 
 
     override fun initSubscription() {
         super.initSubscription()
+        viewModelDialog = ViewModelProviders.of(activity!!)
+            .get(DialogViewModel::class.java)
+
+        viewModelDialog.dialogMess.observe(viewLifecycleOwner, Observer { mess ->
+            hostActivity.showMessage(mess)
+        })
+
         getKeyListenerFlowable()
             .`as`(AutoDispose.autoDisposable(scopeProvider))
             .subscribe {
@@ -31,18 +36,14 @@ class AboutFragment : BaseFragment() {
             }
 
         tvMessage.setOnClickListener {
-            navController.navigate(R.id.myDialog)
+            navController.navigate(R.id.myDialog,
+                Bundle().apply { putString("mess", "Диалог ${Date()}") })
         }
 
         tvMessage.text = arguments?.getString("description")
 
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (DIALOG_REQUEST_CODE == requestCode && DialogInterface.BUTTON_POSITIVE == resultCode) {
-            hostActivity.showMessage("Click button positive")
-        }
-    }
 
     override fun getLayout() = R.layout.about_fragment
 }
